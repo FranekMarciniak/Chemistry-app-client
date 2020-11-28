@@ -2,30 +2,30 @@ import "./styles/reset.css";
 import "./styles/global.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Layout from "./components/Layout";
-import SchemaCreator from "./pages/SchemaCreator";
-import ExerciseCreator from "./pages/ExerciseCreator";
-import ListOfExercises from "./pages/ListOfExercises";
+import SchemaCreatorPage from "./pages/SchemaCreatorPage";
+import ExerciseCreatorPage from "./pages/ExerciseCreatorPage";
+import ListOfExercisesPage from "./pages/ListOfExercisesPage";
 import ExercisesPage from "./pages/ExercisesPage";
-import Home from "./pages/Home";
+import HomePage from "./pages/HomePage";
 function App() {
   return (
     <Router>
       <Layout>
         <Switch>
           <Route exact path="/">
-            <Home />
+            <HomePage />
           </Route>
           <Route exact path="/schema">
-            <SchemaCreator />
+            <SchemaCreatorPage />
           </Route>
           <Route exact path="/example">
-            <ExerciseCreator />
+            <ExerciseCreatorPage />
           </Route>
           <Route exact path="/test">
             <ExercisesPage />
           </Route>
           <Route exact path="/list">
-            <ListOfExercises />
+            <ListOfExercisesPage />
           </Route>
         </Switch>
       </Layout>

@@ -32,6 +32,7 @@ const useStyles = makeStyles((theme) => ({
       duration: theme.transitions.duration.leavingScreen,
     }),
     height: "10%",
+    backgroundColor: "#1A1A1A",
   },
   appBarShift: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -146,7 +147,10 @@ function Header() {
             <Link
               to={blob.path}
               key={blob.name}
-              style={{ textDecoration: "none", color: "black" }}
+              style={{
+                textDecoration: "none",
+                color: "rgba(255, 255, 255, 0.87)",
+              }}
             >
               <ListItem button onClick={() => setOpen(false)}>
                 <ListItemText primary={blob.name} />

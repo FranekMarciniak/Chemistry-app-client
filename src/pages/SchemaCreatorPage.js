@@ -1,9 +1,10 @@
 import React from "react";
 import Wrapper from "../components/Wrapper";
+import SchemaForm from "../components/SchemaForm";
 function SchemaCreator() {
   return (
     <Wrapper>
-      <h1>Create your schema for exercises</h1>
+      <SchemaForm />
     </Wrapper>
   );
 }

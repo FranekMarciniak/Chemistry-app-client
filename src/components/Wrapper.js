@@ -4,10 +4,10 @@ function Wrapper({ children }) {
   const WrapperSection = styled.section`
     width: 50%;
     height: 85%;
-    background-color: black;
     min-width: 400px;
     max-width: 700px;
-    color: white;
+    display: flex;
+    flex-direction: column;
   `;
   return <WrapperSection>{children}</WrapperSection>;
 }

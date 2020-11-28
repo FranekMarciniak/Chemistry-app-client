@@ -3,7 +3,7 @@ import Wrapper from "../components/Wrapper";
 function ListOfExercises() {
   return (
     <Wrapper>
-      <h1>Yello</h1>
+      <h1>List of all</h1>
     </Wrapper>
   );
 }
