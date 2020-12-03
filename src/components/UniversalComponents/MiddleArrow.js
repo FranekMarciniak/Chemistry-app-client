@@ -1,5 +1,5 @@
 import React from "react";
-import arrow from "../assets/method-draw-image.svg";
+import arrow from "../../assets/method-draw-image.svg";
 import styled from "styled-components";
 import { makeStyles, TextField } from "@material-ui/core";
 const useStyles = makeStyles({
@@ -25,13 +25,16 @@ const MiddleArrowWrapper = styled.div`
     width: 110px;
     height: 75px;
   }
+  @media (max-width: 900px) {
+    width: 90%;
+  }
 `;
 function MiddleArrow({ top }) {
   const classes = useStyles();
   return (
     <MiddleArrowWrapper className={classes.root}>
       {top === true ? <TextField className={classes.textField} /> : null}
-      <img src={arrow} className={classes.img} />
+      <img src={arrow} alt="arrow" className={classes.img} />
     </MiddleArrowWrapper>
   );
 }

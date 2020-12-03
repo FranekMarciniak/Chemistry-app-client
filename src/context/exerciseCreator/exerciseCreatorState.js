@@ -3,6 +3,10 @@ import {
   CLEAR_CURRENT_SCHEMA,
   SET_EXERCISE_FROM_SCHEMA,
   CLEAR_EXERCISE_FROM_SCHEMA,
+  CLEAR_CURRENT_EXERCISE,
+  SET_EXERCISE_NAME,
+  CLEAR_EXERCISE_NAME,
+  SET_EXERCISE_TOP,
 } from "../types.js";
 import React, { useReducer, createContext } from "react";
 import ExerciseCreatorReducer from "./exerciseCreatorReducer";
@@ -29,6 +33,14 @@ function ExerciseCreatorState(props) {
         id: 2,
         errors: [],
       },
+      {
+        name: "TYPIE TO TRZECI SCHEMACIK",
+        leftSide: 3,
+        rightSide: 3,
+        top: true,
+        id: 3,
+        errors: [],
+      },
     ],
     currentExercise: {},
   };
@@ -47,6 +59,8 @@ function ExerciseCreatorState(props) {
   };
   const setExerciseFromSchema = (data) => {
     const obj = {
+      name: "",
+      top: data.top === true ? "" : false,
       leftSide: Array(data.leftSide === undefined ? 0 : data.leftSide)
         .fill(null)
         .map((slot, index) => {
@@ -66,9 +80,22 @@ function ExerciseCreatorState(props) {
           };
         }),
     };
-    console.log(data, obj);
 
     dispatch({ type: SET_EXERCISE_FROM_SCHEMA, payload: obj });
+  };
+  const updateExercise = (data, type) => {
+    dispatch({ type, payload: data });
+  };
+  const clearCurrentExercise = () => {
+    if (state.currentExercise.rightSide !== undefined) {
+      dispatch({ type: CLEAR_CURRENT_EXERCISE });
+    }
+  };
+  const setExerciseName = (data) => {
+    dispatch({ type: SET_EXERCISE_NAME, payload: data });
+  };
+  const setExerciseTop = (data) => {
+    dispatch({ type: SET_EXERCISE_TOP, payload: data });
   };
   return (
     <Provider
@@ -77,7 +104,11 @@ function ExerciseCreatorState(props) {
         currentExercise: state.currentExercise,
         currentSchema: state.currentSchema,
         setCurrentSchema,
+        updateExercise,
         setExerciseFromSchema,
+        clearCurrentExercise,
+        setExerciseName,
+        setExerciseTop,
       }}
     >
       {props.children}

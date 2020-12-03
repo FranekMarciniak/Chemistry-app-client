@@ -1,4 +1,5 @@
 import React, { useState, useReducer } from "react";
+import styled from "styled-components";
 import {
   TextField,
   Typography,
@@ -20,18 +21,20 @@ const useStyles = makeStyles({
     fontSize: "16px",
     fontWeight: "600",
   },
-  formRow: {
-    width: "100%",
-    height: "100px",
-    display: "flex",
-    alignItems: "flexEnd",
-    justifyItems: "center",
-  },
   button: {
     height: "40px",
   },
 });
-
+const FormRow = styled.div`
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  justify-items: center;
+`;
+const SchemaFormWrapper = styled.div`
+  width: 90%;
+`;
 const SchemaForm = () => {
   const reducer = (state, action) => {
     switch (action.type) {
@@ -88,11 +91,10 @@ const SchemaForm = () => {
       setTimeout(() => dispatch({ type: "clearError" }), 5000);
       return;
     }
-    console.log(state);
   };
   return (
-    <>
-      <div className={classes.formRow}>
+    <SchemaFormWrapper>
+      <FormRow>
         <Typography className={classes.typography}>
           Podaj Nazwę schematu
         </Typography>
@@ -109,9 +111,9 @@ const SchemaForm = () => {
             dispatch({ type: e.target.id, payload: e.target.value });
           }}
         />
-      </div>
+      </FormRow>
 
-      <div className={classes.formRow}>
+      <FormRow>
         <Typography className={classes.typography}>
           Podaj liczbę substraktów
         </Typography>
@@ -130,9 +132,9 @@ const SchemaForm = () => {
             dispatch({ type: e.target.id, payload: e.target.value })
           }
         />
-      </div>
+      </FormRow>
 
-      <div className={classes.formRow}>
+      <FormRow>
         <Typography className={classes.typography}>
           Podaj liczbę produktów
         </Typography>
@@ -151,8 +153,8 @@ const SchemaForm = () => {
             dispatch({ type: e.target.id, payload: e.target.value })
           }
         />
-      </div>
-      <div className={classes.formRow}>
+      </FormRow>
+      <FormRow>
         <Typography className={classes.typography}>
           Czy chcesz dyngs nad strzałką
         </Typography>
@@ -165,8 +167,8 @@ const SchemaForm = () => {
             dispatch({ type: e.target.id, payload: e.target.checked });
           }}
         />
-      </div>
-      <div className={classes.formRow}>
+      </FormRow>
+      <FormRow>
         <Button
           variant="contained"
           color="secondary"
@@ -176,8 +178,8 @@ const SchemaForm = () => {
         >
           Dodaj Schemat
         </Button>
-      </div>
-    </>
+      </FormRow>
+    </SchemaFormWrapper>
   );
 };
 

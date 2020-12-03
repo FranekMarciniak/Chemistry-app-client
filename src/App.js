@@ -1,7 +1,7 @@
 import "./styles/reset.css";
 import "./styles/global.scss";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Layout from "./components/Layout";
+import Layout from "./components/UniversalComponents/Layout";
 import SchemaCreatorPage from "./pages/SchemaCreatorPage";
 import ExerciseCreatorPage from "./pages/ExerciseCreatorPage";
 import ListOfExercisesPage from "./pages/ListOfExercisesPage";

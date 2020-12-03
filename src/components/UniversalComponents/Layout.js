@@ -7,7 +7,6 @@ const Main = styled.main`
   height: 80vh;
   display: flex;
   justify-content: center;
-  align-items: center;
 `;
 function Layout({ children }) {
   const darkTheme = createMuiTheme({

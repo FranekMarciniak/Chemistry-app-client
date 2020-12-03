@@ -1,6 +1,6 @@
 import React from "react";
-import Wrapper from "../components/Wrapper";
-import SchemaForm from "../components/SchemaForm";
+import Wrapper from "../components/UniversalComponents/Wrapper";
+import SchemaForm from "../components/SchemaCreatorComponents/SchemaForm";
 function SchemaCreator() {
   return (
     <Wrapper>
