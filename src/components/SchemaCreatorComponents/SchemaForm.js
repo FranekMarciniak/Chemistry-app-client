@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import {
   TextField,
@@ -8,6 +8,8 @@ import {
   Button,
   Input,
 } from "@material-ui/core";
+import { SchemaCreatorContext } from "../../context/schemaCreator/schemaCreatorState";
+
 const useStyles = makeStyles({
   textFiled: {
     marginLeft: "15px",
@@ -36,62 +38,16 @@ const SchemaFormWrapper = styled.div`
   width: 90%;
 `;
 const SchemaForm = () => {
-  const reducer = (state, action) => {
-    switch (action.type) {
-      case "name":
-        return { ...state, name: action.payload };
-      case "leftSide":
-        return { ...state, leftSide: parseInt(action.payload) };
-      case "rightSide":
-        return { ...state, rightSide: parseInt(action.payload) };
-      case "top":
-        return { ...state, top: action.payload };
-      case "error":
-        return {
-          ...state,
-          errors: [...state.errors, action.payload],
-        };
-      case "clearError":
-        return {
-          ...state,
-          errors: [],
-        };
-      default:
-        return { ...state };
-    }
-  };
-  const initialState = {
-    name: "",
-    leftSide: 0,
-    rightSide: 0,
-    top: false,
-    errors: [],
-  };
-
   const classes = useStyles();
-
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const onSubmit = () => {
-    if (state.name === "") {
-      dispatch({ type: "error", payload: "Hej, wpisz nazwę schematu" });
-      setTimeout(() => dispatch({ type: "clearError" }), 5000);
-      return;
-    }
-    if (
-      state.leftSide <= 0 ||
-      isNaN(state.leftSide) === true ||
-      state.rightSide <= 0 ||
-      isNaN(state.rightSide) === true
-    ) {
-      dispatch({
-        type: "error",
-        payload: "Liczba substratów i produktów musi być większa od 0",
-      });
-      setTimeout(() => dispatch({ type: "clearError" }), 5000);
-      return;
-    }
-  };
+  const schemaCreatorContext = useContext(SchemaCreatorContext);
+  const {
+    setSchemaLeft,
+    setSchemaName,
+    setSchemaRight,
+    setSchemaTop,
+    submitSchema,
+    state,
+  } = schemaCreatorContext;
   return (
     <SchemaFormWrapper>
       <FormRow>
@@ -108,7 +64,7 @@ const SchemaForm = () => {
           value={state.name}
           className={classes.textFiled}
           onChange={(e) => {
-            dispatch({ type: e.target.id, payload: e.target.value });
+            setSchemaName(e.target.value);
           }}
         />
       </FormRow>
@@ -128,9 +84,7 @@ const SchemaForm = () => {
           }}
           className={classes.textFiledNumber}
           value={state.leftSide}
-          onChange={(e) =>
-            dispatch({ type: e.target.id, payload: e.target.value })
-          }
+          onChange={(e) => setSchemaLeft(e.target.value)}
         />
       </FormRow>
 
@@ -149,9 +103,7 @@ const SchemaForm = () => {
           }}
           className={classes.textFiledNumber}
           value={state.rightSide}
-          onChange={(e) =>
-            dispatch({ type: e.target.id, payload: e.target.value })
-          }
+          onChange={(e) => setSchemaRight(e.target.value)}
         />
       </FormRow>
       <FormRow>
@@ -162,10 +114,10 @@ const SchemaForm = () => {
           name="checkedA"
           id="top"
           inputProps={{ "aria-label": "secondary checkbox" }}
-          checked={state.top}
           onChange={(e) => {
-            dispatch({ type: e.target.id, payload: e.target.checked });
+            setSchemaTop(e.target.checked);
           }}
+          checked={state.top}
         />
       </FormRow>
       <FormRow>
@@ -174,7 +126,7 @@ const SchemaForm = () => {
           color="secondary"
           disableElevation
           className={classes.button}
-          onClick={onSubmit}
+          onClick={submitSchema}
         >
           Dodaj Schemat
         </Button>

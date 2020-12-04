@@ -4,7 +4,10 @@ import { ExerciseCreatorContext } from "../../context/exerciseCreator/exerciseCr
 import LeftSide from "./LeftSide";
 import RightSide from "./RightSide";
 import MiddleArrow from "../UniversalComponents/MiddleArrow";
-import { Button, TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import ExerciseCreatorName from "./ExerciseCreatorName";
+import ExerciseName from "../ExerciseComponents/ExerciseName";
+
 const ExerciseFormWrapper = styled.div`
   width: 90%;
   height: 100px;
@@ -19,45 +22,23 @@ const ButtonWrapper = styled.div`
   margin-top: 25px;
   display: flex;
 `;
-const NameWrapper = styled.div`
-  width: 100%;
-  display: flex;
-  height: 50px;
-  flex-direction: column;
-  margin-bottom: 30px;
-  div {
-    width: 50%;
-  }
-`;
-function ExerciseForm() {
+
+function ExerciseForm({ location }) {
   const exerciseCreatorContext = useContext(ExerciseCreatorContext);
   const {
     currentSchema,
     currentExercise,
     setExerciseFromSchema,
     clearCurrentExercise,
-    setExerciseName,
   } = exerciseCreatorContext;
+
   useEffect(() => {
     clearCurrentExercise();
     setExerciseFromSchema(currentSchema);
   }, [currentSchema]);
   return (
     <ExerciseFormWrapper>
-      {currentSchema.leftSide > 0 && currentSchema.rightSide > 0 ? (
-        <NameWrapper>
-          <TextField
-            required
-            label="Nazwa przykładu"
-            id="name"
-            InputLabelProps={{
-              shrink: true,
-            }}
-            value={currentExercise.name}
-            onChange={(e) => setExerciseName(e.target.value)}
-          />
-        </NameWrapper>
-      ) : null}
+      {location === "creator" ? <ExerciseCreatorName /> : <ExerciseName />}
       <LeftSide />
       {currentSchema.leftSide > 0 && currentSchema.rightSide > 0 ? (
         <MiddleArrow top={currentSchema.top} />

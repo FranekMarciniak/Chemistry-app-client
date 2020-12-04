@@ -1,9 +1,10 @@
 import React from "react";
 import Wrapper from "../components/UniversalComponents/Wrapper";
+import ExerciseForm from "../components/ExerciseCreatorComponents/ExerciseForm";
 function ExercisesPage() {
   return (
     <Wrapper>
-      <h1>Test yourself</h1>
+      <ExerciseForm location="test" />
     </Wrapper>
   );
 }

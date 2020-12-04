@@ -2,10 +2,8 @@ import {
   SET_CURRENT_SCHEMA,
   CLEAR_CURRENT_SCHEMA,
   SET_EXERCISE_FROM_SCHEMA,
-  CLEAR_EXERCISE_FROM_SCHEMA,
   CLEAR_CURRENT_EXERCISE,
   SET_EXERCISE_NAME,
-  CLEAR_EXERCISE_NAME,
   SET_EXERCISE_TOP,
 } from "../types.js";
 import React, { useReducer, createContext } from "react";
@@ -14,7 +12,6 @@ export const ExerciseCreatorContext = createContext();
 const { Provider } = ExerciseCreatorContext;
 function ExerciseCreatorState(props) {
   const initialState = {
-    currentExercise: {},
     currentSchema: {},
     schemas: [
       {

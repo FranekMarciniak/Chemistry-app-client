@@ -8,29 +8,32 @@ import ListOfExercisesPage from "./pages/ListOfExercisesPage";
 import ExercisesPage from "./pages/ExercisesPage";
 import HomePage from "./pages/HomePage";
 import ExerciseCreatorState from "./context/exerciseCreator/exerciseCreatorState";
+import SchemaCreatorState from "./context/schemaCreator/schemaCreatorState";
 function App() {
   return (
     <Router>
       <ExerciseCreatorState>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/schema">
-              <SchemaCreatorPage />
-            </Route>
-            <Route exact path="/example">
-              <ExerciseCreatorPage />
-            </Route>
-            <Route exact path="/test">
-              <ExercisesPage />
-            </Route>
-            <Route exact path="/list">
-              <ListOfExercisesPage />
-            </Route>
-          </Switch>
-        </Layout>
+        <SchemaCreatorState>
+          <Layout>
+            <Switch>
+              <Route exact path="/">
+                <HomePage />
+              </Route>
+              <Route exact path="/schema">
+                <SchemaCreatorPage />
+              </Route>
+              <Route exact path="/example">
+                <ExerciseCreatorPage />
+              </Route>
+              <Route exact path="/test">
+                <ExercisesPage />
+              </Route>
+              <Route exact path="/list">
+                <ListOfExercisesPage />
+              </Route>
+            </Switch>
+          </Layout>
+        </SchemaCreatorState>
       </ExerciseCreatorState>
     </Router>
   );
