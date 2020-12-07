@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import InputLabel from "@material-ui/core/InputLabel";
 import MenuItem from "@material-ui/core/MenuItem";
 import Select from "@material-ui/core/Select";
@@ -7,14 +7,23 @@ import { ExerciseCreatorContext } from "../../context/exerciseCreator/exerciseCr
 
 function SchemasList() {
   const exerciseCreatorContext = useContext(ExerciseCreatorContext);
-  const { schemas, setCurrentSchema, currentSchema } = exerciseCreatorContext;
+  const {
+    schemas,
+    setCurrentSchemaFromList,
+    currentSchema,
+    getSchemasFromAPI,
+  } = exerciseCreatorContext;
+  useEffect(() => {
+    setCurrentSchemaFromList("0");
+    getSchemasFromAPI();
+  }, []);
   return (
     <>
       <InputLabel id="demo-mutiple-name-label">Nazwa schematu</InputLabel>
       <Select
         labelId="demo-mutiple-name-label"
         value={currentSchema.name === undefined ? "0" : currentSchema.id}
-        onChange={(e) => setCurrentSchema(e.target.value)}
+        onChange={(e) => setCurrentSchemaFromList(e.target.value)}
       >
         <MenuItem value="0" key="0">
           <em>Nie no, najpierw wybierz schemat ziom</em>

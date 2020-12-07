@@ -1,12 +1,12 @@
 import React from "react";
 import Wrapper from "../components/UniversalComponents/Wrapper";
-import ExerciseForm from "../components/ExerciseCreatorComponents/ExerciseForm";
+import ExerciseCreatorForm from "../components/ExerciseCreatorComponents/ExerciseCreatorForm";
 import SchemaList from "../components/ExerciseCreatorComponents/SchemasList";
 function ExerciseCreator() {
   return (
     <Wrapper>
       <SchemaList />
-      <ExerciseForm location="creator" />
+      <ExerciseCreatorForm location="creator" />
     </Wrapper>
   );
 }

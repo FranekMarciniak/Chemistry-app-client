@@ -13,7 +13,7 @@ const NameWrapper = styled.div`
     width: 50%;
   }
 `;
-function ExerciseName({ location }) {
+function ExerciseName() {
   const exerciseCreatorContext = useContext(ExerciseCreatorContext);
   const { currentExercise, setExerciseName } = exerciseCreatorContext;
   return (

@@ -13,12 +13,12 @@ const NameWrapper = styled.div`
     width: 50%;
   }
 `;
-function ExerciseName({ name }) {
+function ExerciseName() {
   const exerciseCreatorContext = useContext(ExerciseCreatorContext);
-  const { currentExercise } = exerciseCreatorContext;
+  const { testExercise } = exerciseCreatorContext;
   return (
     <NameWrapper>
-      <Typography variant="h4">Test name</Typography>
+      <Typography variant="h4">{testExercise.name}</Typography>
     </NameWrapper>
   );
 }

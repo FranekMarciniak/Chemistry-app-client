@@ -45,7 +45,7 @@ const SchemaForm = () => {
     setSchemaName,
     setSchemaRight,
     setSchemaTop,
-    submitSchema,
+    postSchemaToAPI,
     state,
   } = schemaCreatorContext;
   return (
@@ -126,7 +126,7 @@ const SchemaForm = () => {
           color="secondary"
           disableElevation
           className={classes.button}
-          onClick={submitSchema}
+          onClick={postSchemaToAPI}
         >
           Dodaj Schemat
         </Button>

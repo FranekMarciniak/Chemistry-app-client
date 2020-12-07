@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useEffect, useContext } from "react";
 import Wrapper from "../components/UniversalComponents/Wrapper";
-import ExerciseForm from "../components/ExerciseCreatorComponents/ExerciseForm";
+import ExerciseTestForm from "../components/ExerciseComponents/ExerciseTestForm.js";
+import { ExerciseCreatorContext } from "../context/exerciseCreator/exerciseCreatorState";
+
 function ExercisesPage() {
   return (
     <Wrapper>
-      <ExerciseForm location="test" />
+      <ExerciseTestForm />
     </Wrapper>
   );
 }

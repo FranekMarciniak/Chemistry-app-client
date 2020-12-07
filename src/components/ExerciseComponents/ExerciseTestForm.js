@@ -1,13 +1,12 @@
 import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
-import { ExerciseCreatorContext } from "../../context/exerciseCreator/exerciseCreatorState";
-import LeftSide from "./LeftSide";
-import RightSide from "./RightSide";
 import MiddleArrow from "../UniversalComponents/MiddleArrow";
-import { Button } from "@material-ui/core";
-import ExerciseCreatorName from "./ExerciseCreatorName";
-import ExerciseName from "../ExerciseComponents/ExerciseName";
+import { ExerciseCreatorContext } from "../../context/exerciseCreator/exerciseCreatorState";
+import RightSide from "./RightSide";
+import LeftSide from "./LeftSide";
 
+import { Button } from "@material-ui/core";
+import ExerciseName from "./ExerciseName";
 const ExerciseFormWrapper = styled.div`
   width: 90%;
   height: 100px;
@@ -23,42 +22,41 @@ const ButtonWrapper = styled.div`
   display: flex;
 `;
 
-function ExerciseForm({ location }) {
+function ExerciseCreatorForm() {
+  //Using useContext hook to bring in global state
   const exerciseCreatorContext = useContext(ExerciseCreatorContext);
+  //Destructuring methods from global context
   const {
-    currentSchema,
     currentExercise,
+    currentSchema,
+    setCurrentSchemaFromAPI,
     setExerciseFromSchema,
-    clearCurrentExercise,
+    setCurrentTestExercise,
+    testExercise,
+    getExerciseFromAPI,
+    setExerciseName,
   } = exerciseCreatorContext;
-
   useEffect(() => {
-    clearCurrentExercise();
+    getExerciseFromAPI();
+  }, []);
+  useEffect(() => {
     setExerciseFromSchema(currentSchema);
   }, [currentSchema]);
   return (
     <ExerciseFormWrapper>
-      {location === "creator" ? <ExerciseCreatorName /> : <ExerciseName />}
+      {currentExercise.leftSide !== undefined &&
+      currentExercise.rightSide !== undefined &&
+      currentExercise.rightSide.length > 0 &&
+      currentExercise.leftSide.length > 0 ? (
+        <ExerciseName />
+      ) : null}
       <LeftSide />
       {currentSchema.leftSide > 0 && currentSchema.rightSide > 0 ? (
         <MiddleArrow top={currentSchema.top} />
       ) : null}
-
       <RightSide />
-      {currentSchema.leftSide > 0 && currentSchema.rightSide > 0 ? (
-        <ButtonWrapper>
-          <Button
-            variant="contained"
-            color="secondary"
-            disableElevation
-            onClick={() => console.log(currentExercise)}
-          >
-            Add exercise
-          </Button>
-        </ButtonWrapper>
-      ) : null}
     </ExerciseFormWrapper>
   );
 }
 
-export default ExerciseForm;
+export default ExerciseCreatorForm;

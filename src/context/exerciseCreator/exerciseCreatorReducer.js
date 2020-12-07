@@ -7,9 +7,24 @@ import {
   CLEAR_CURRENT_EXERCISE,
   SET_EXERCISE_NAME,
   SET_EXERCISE_TOP,
+  SET_CURRENT_SCHEMA_FROM_API,
+  SET_CURRENT_TEST_EXERCISE,
+  GET_SCHEMAS_FROM_API,
+  GET_EXERCISE_FROM_API,
 } from "../types.js";
 export default (state, action) => {
   switch (action.type) {
+    case SET_CURRENT_SCHEMA_FROM_API:
+      return {
+        ...state,
+        currentSchema: action.payload,
+      };
+    case SET_CURRENT_TEST_EXERCISE:
+      return {
+        ...state,
+        testExercise: action.payload,
+      };
+
     case SET_CURRENT_SCHEMA:
       return {
         ...state,
@@ -73,6 +88,17 @@ export default (state, action) => {
           ...state.currentExercise,
           top: action.payload,
         },
+      };
+    case GET_SCHEMAS_FROM_API:
+      return {
+        ...state,
+        schemas: action.payload,
+      };
+    case GET_EXERCISE_FROM_API:
+      return {
+        ...state,
+        testExercise: action.payload.exercise,
+        currentSchema: action.payload.schema,
       };
     default:
       return { ...state };
